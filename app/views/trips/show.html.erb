@@ -14,3 +14,18 @@
 
     <%= f.label :email %>
     <%= f.text_field :email %>
+
+    <%= f.submit "Add item"%>
+<% end %>
+
+
+<h3>Add Comment To Trip</h3>
+<%= form_for @post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+
+    <%= f.submit "Add Comment" %>
+<% end %>

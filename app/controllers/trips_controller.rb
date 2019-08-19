@@ -6,12 +6,12 @@ class TripsController < ApplicationController
 
     def create
         @trip = Trip.create(trip_params)
-        @trip.user = User.find_by(id: session[:user_id])
+        @trip.users << User.find_by(id: session[:user_id])
         if @trip.save
             redirect_to trip_path(@path)
         else
             render :new
-            @post.errors.full_messages.each do |msg|
+            @trip.errors.full_messages.each do |msg|
                 puts msg
             end
         end

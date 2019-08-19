@@ -12,14 +12,14 @@
 </head>
 
 <body>
-    <div class="ui secondary pointing menu">
+    <nav class="ui secondary pointing menu">
         <div class="ui basic segment">
             <a href="/"> <img class="ui tiny image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYyaqA7m_Fl2BPJuwlUriNusbOp6FETGUBH5G56EQ0TpU4iFV-WA" alt="Trip-Up"></a>
         </div>
 
         <% if session[:user_id] %>
             <a class="item" href="/">Trips</a>
-            <a class="item" href="">Friends</a>
+            <a class="item">Friends</a>
             <a class="item" href="<%user_path((User.all.select{|u| u.id == session[:user_id]})[0])%>">Profile</a>
             <% end %>
 
@@ -33,7 +33,7 @@
                                     <% end %>
                     </div>
                 </div>
-    </div>
+    </nav>
     <%= yield %>
 </body>
 
