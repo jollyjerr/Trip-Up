@@ -9,6 +9,19 @@ class ItemsController < ApplicationController
         @item = Item.create(item_params)
     end
 
+    def edit
+        @item = Item.find(params[:id])
+    end
+    
+    def update
+        @item = Item.update(item_params)
+    end
+
+    def delete
+        @item = Item.find(params[:id])
+        @item.destroy_all
+    end
+
 private
 
     def item_params

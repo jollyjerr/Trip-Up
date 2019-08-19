@@ -8,7 +8,7 @@ class TripsController < ApplicationController
         @trip = Trip.create(trip_params)
         @trip.users << User.find_by(id: session[:user_id])
         if @trip.save
-            redirect_to trip_path(@path)
+            redirect_to trip_path(@trip)
         else
             render :new
             @trip.errors.full_messages.each do |msg|
@@ -19,6 +19,11 @@ class TripsController < ApplicationController
 
     def show
         @trip = Trip.find(params[:id])
+    end
+
+    def destroy
+        @trip = Trip.find(params[:id]).destroy
+        redirect_to '/'
     end
 
 private

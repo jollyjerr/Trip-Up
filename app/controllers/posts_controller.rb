@@ -4,13 +4,11 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create(trip_params)
-        @post.user = User.find_by(id: session[:user_id])
-        @post.trip = Trip.find(params[:id])
+        @post = Post.create(post_params)
+        @post.user_id = User.find_by(id: session[:user_id])
         if @post.save
             redirect_to post_path(@path)
         else
-            render :new
             @post.errors.full_messages.each do |msg|
                 puts msg
             end
@@ -23,8 +21,8 @@ class PostsController < ApplicationController
 
 private
 
-    def trip_params
-        params.require(:post).permit(:name, :body)
+    def post_params
+        params.require(:post).permit(:name, :body, :trip_id)
     end
 
 end

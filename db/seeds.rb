@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Category.create(:name => "Biking")
+Category.create(:name => "Hiking")
+Category.create(:name => "Camping")
+Category.create(:name => "Climbing")
+Category.create(:name => "Fishing")
+Category.create(:name => "Hunting")
+
+Location.create(:name => "Denver")
+Location.create(:name => "Boulder")

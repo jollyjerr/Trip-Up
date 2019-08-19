@@ -15,12 +15,12 @@
                         <%= link_to  trip.name, trip_path(trip) %>
                     </h3>
                     <h5 class="ui header">
-                        <%= trip.user.name %>
+                        <%= trip.users.first.name %>
                     </h5>
                     <p class="ui segment">
-                        <%= trip.body %>
+                        <%= trip.description %>
                     </p>
-                    <% if session[:user_id] == trip.user.id %>
+                    <% if session[:user_id] == trip.users.first.id %>
                         <div class="ui buttons">
                             <button class="ui tiny button">
                         <%= link_to  "Edit", edit_trip_path(trip) %>
