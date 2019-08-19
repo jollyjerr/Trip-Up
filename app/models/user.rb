@@ -5,8 +5,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
 
     has_secure_password
-    has_many :users_trips
-    has_many :trips, through: :users_trips
+    has_and_belongs_to_many :trips
     has_many :posts
     has_many :items
 end

@@ -1,7 +1,39 @@
-<h1>Hello world!</h1>
+<section id="left_banner">
+    <div class="ui raised segment">
+        <h1 class="ui header">
+            <%= @user.name %>
+        </h1>
+        <a class="ui primary basic button" href="/trips/new">Create Trip</a>
+    </div>
+</section>
+<% if @user.trips.any? %>
+    <main class="ui raised very padded text container segment">
+        <section>
+            <% @user.trips.all.reverse.each do |trip| %>
+                <div class="ui vertical segment">
+                    <h3 class="ui header">
+                        <%= link_to  trip.name, trip_path(trip) %>
+                    </h3>
+                    <h5 class="ui header">
+                        <%= trip.user.name %>
+                    </h5>
+                    <p class="ui segment">
+                        <%= trip.body %>
+                    </p>
+                    <% if session[:user_id] == trip.user.id %>
+                        <div class="ui buttons">
+                            <button class="ui tiny button">
+                        <%= link_to  "Edit", edit_trip_path(trip) %>
+                    </button>
+                            <button class="ui tiny button">
+                        <%= link_to  "Delete Trip", trip_path(trip), method: :delete, data: { confirm: "Really?" } %>
+                    </button>
+                        </div>
+                        <% end %>
+                </div>
+                <% end %>
+        </section>
+    </main>
+    <% else %>
 
-<% Trip.all.each do |trip| %>
-    <h5>
-        <%=trip.name%>
-    </h5>
-    <% end %>
+        <% end %>

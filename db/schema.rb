@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_173215) do
+ActiveRecord::Schema.define(version: 2019_08_19_191339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,17 +60,17 @@ ActiveRecord::Schema.define(version: 2019_08_19_173215) do
     t.index ["location_id"], name: "index_trips_on_location_id"
   end
 
+  create_table "trips_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "trip_id", null: false
+    t.index ["trip_id", "user_id"], name: "index_trips_users_on_trip_id_and_user_id"
+    t.index ["user_id", "trip_id"], name: "index_trips_users_on_user_id_and_trip_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
     t.string "password_digest"
-  end
-
-  create_table "users_trips", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "trip_id"
-    t.index ["trip_id"], name: "index_users_trips_on_trip_id"
-    t.index ["user_id"], name: "index_users_trips_on_user_id"
   end
 
   add_foreign_key "items", "trips"
@@ -79,6 +79,4 @@ ActiveRecord::Schema.define(version: 2019_08_19_173215) do
   add_foreign_key "posts", "users"
   add_foreign_key "trips", "categories"
   add_foreign_key "trips", "locations"
-  add_foreign_key "users_trips", "trips"
-  add_foreign_key "users_trips", "users"
 end

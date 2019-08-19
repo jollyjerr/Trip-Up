@@ -23,6 +23,19 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+    
+    end
+
+    def update
+    
+    end
+
+    def destroy
+        User.find_by(id: session[:user_id]).destroy
+        redirect_to('/')
+    end
+
 private
 
     def user_params

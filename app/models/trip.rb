@@ -4,7 +4,7 @@ class Trip < ApplicationRecord
 
     belongs_to :category
     belongs_to :location
-    has_many :users, through: :users_trips
+    has_and_belongs_to_many :users
     has_many :posts
     has_many :items
 

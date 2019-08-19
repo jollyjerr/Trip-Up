@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>TripUp</title>
+    <title>Trip-Up</title>
     <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
 
@@ -16,15 +16,23 @@
         <div class="ui basic segment">
             <a href="/"> <img class="ui tiny image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYyaqA7m_Fl2BPJuwlUriNusbOp6FETGUBH5G56EQ0TpU4iFV-WA" alt="Trip-Up"></a>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <% if session[:user_id] %>
-                    <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-                        <input class="ui basic button" type=submit value='logout'>
-                        <% end %>
-                            <% end %>
-            </div>
-        </div>
+
+        <% if session[:user_id] %>
+            <a class="item" href="/">Trips</a>
+            <a class="item" href="">Friends</a>
+            <a class="item" href="<%user_path((User.all.select{|u| u.id == session[:user_id]})[0])%>">Profile</a>
+            <% end %>
+
+
+                <div class="right menu">
+                    <div class="item">
+                        <% if session[:user_id] %>
+                            <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+                                <input class="ui basic button" type=submit value='logout'>
+                                <% end %>
+                                    <% end %>
+                    </div>
+                </div>
     </div>
     <%= yield %>
 </body>
