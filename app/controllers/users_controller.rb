@@ -9,14 +9,17 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             redirect_to(
-                controller: 'users',
-                action: 'welcome'
+                controller: 'experiences',
+                action: 'index'
             )
         else
             redirect_to(
                 controller: 'users',
                 action: 'new'
             )
+            @user.errors.full_messages.each do |msg|
+                puts msg
+            end
         end
     end
 
