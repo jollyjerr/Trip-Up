@@ -41,7 +41,7 @@
     <div class="column">
         <section class="ui padded text segment">
             <h4 class="ui header">Packing list:</h4>
-            <ul class="ui large middle aligned divided list">
+            <ul class="ui large middle animated aligned divided list">
                 <% @trip.items.reverse.each do |item| %>
                     <p class="item">
                         <%= link_to  item.name, item.link %>
