@@ -20,7 +20,9 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        Post.find_by(id: params[:id])
+        id = Post.find_by(id: params[:id]).trip_id
+        Post.find_by(id: params[:id]).destroy
+        redirect_to trip_path(id)
     end
 
 private

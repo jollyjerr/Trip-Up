@@ -19,7 +19,7 @@
 
                 <input type="text" name="name" placeholder="name">
 
-                <button type="submit"></button>
+                <button type="submit">Add Item</button>
                 <% end %>
         </div>
         <div>
@@ -31,24 +31,46 @@
 
                 <input type="text" name="body" placeholder="body">
 
-                <button type="submit"></button>
+                <button type="submit">Comment</button>
                 <% end %>
         </div>
     </div>
 </main>
-
-<section class="ui padded text segment">
-    <% @trip.posts.each do |post| %>
-        <div class="ui vertical segment">
-            <p>
-                <%= post.user.name %>
-            </p>
-            <p>
-                <%= post.name %>
-            </p>
-            <p>
-                <%= post.body %>
-            </p>
-        </div>
-        <% end %>
-</section>
+<div class="ui two column grid">
+    <div class="column">
+        <section class="ui padded text segment">
+            <h4 class="ui header">Packing list:</h4>
+            <ul>
+                <% @trip.items.reverse.each do |item| %>
+                    <li>
+                        <%= link_to  item.name, item.link %>
+                    </li>
+                    <% end %>
+            </ul>
+        </section>
+    </div>
+    <div class="column">
+        <section class="ui padded text segment">
+            <% @trip.posts.reverse.each do |post| %>
+                <div class="ui vertical segment">
+                    <p>
+                        <%= post.user.name %>
+                    </p>
+                    <p>
+                        <%= post.name %>
+                    </p>
+                    <p>
+                        <%= post.body %>
+                    </p>
+                    <% if session[:user_id] == post.user.id %>
+                        <div class="ui buttons">
+                            <button class="ui mini button">
+                    <%= link_to  "Delete Comment", post_path(post), method: :delete %>
+                </button>
+                        </div>
+                        <% end %>
+                </div>
+                <% end %>
+        </section>
+    </div>
+</div>
