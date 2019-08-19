@@ -5,31 +5,34 @@
 <p>
     <%= @trip.description %>
 </p>
+<section>
+    <% @trip.posts.each do |post| %>
+    <p><%= post.user.name %></p>
+    <p><%= post.name %></p>
+    <p><%= post.body %></p>
+    <% end %>
+</section>
 
 <h3>Add Item To Packing List</h3>
-<%= form_for Item.new do |f| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
+    <input type="hidden" name="trip_id" value="<%= @trip.id %>">
 
-    <%= f.label :link %>
-    <%= f.text_field :link %>
+    <input type="text" name="name" placeholder="name">
 
-    <%= f.submit "Add item"%>
+    <button type="submit"></button>
 <% end %>
 
 
+
 <h3>Add Comment To Trip</h3>
-<%= form_for Post.new do |f| %>
 
-    <%= f.hidden_field :trip_id %>
-    <%= hidden_field_tag @trip.id, :trip_id %>
+<%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
+    <input type="hidden" name="trip_id" value="<%= @trip.id %>">
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <input type="text" name="name" placeholder="name">
 
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-
-    <%= f.submit "Add Comment" %>
+    <input type="text" name="body" placeholder="body">
+    
+    <button type="submit"></button>
 <% end %>

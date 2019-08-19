@@ -18,6 +18,7 @@ class TripsController < ApplicationController
     end
 
     def show
+        require_logged_in
         @trip = Trip.find(params[:id])
     end
 

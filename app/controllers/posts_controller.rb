@@ -5,9 +5,9 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.create(post_params)
-        @post.user_id = User.find_by(id: session[:user_id])
+        @post.user_id = User.find_by(id: session[:user_id]).id
         if @post.save
-            redirect_to post_path(@path)
+            redirect_to trip_path(@post.trip_id)
         else
             @post.errors.full_messages.each do |msg|
                 puts msg
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 private
 
     def post_params
-        params.require(:post).permit(:name, :body, :trip_id)
+        params.permit(:name, :body, :trip_id)
     end
 
 end

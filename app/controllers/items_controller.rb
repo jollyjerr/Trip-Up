@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-    validates :name, presence: true
 
     def new
         @item = Item.new
@@ -7,6 +6,8 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(item_params)
+        @item.user = User.find(session[:user_id])
+        redirect_to trip_path(@item.trip)
     end
 
     def edit
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
 private
 
     def item_params
-        params.require(:item).permit(:name, :link)
+        params.permit(:name, :link, :trip_id)
     end
 
 end
