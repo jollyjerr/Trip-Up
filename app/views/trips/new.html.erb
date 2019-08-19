@@ -1,0 +1,14 @@
+<h1>Create a New Trip</h1>
+
+<%= form_for @trip do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.collection_select :category, Category.all, :id, :name %>
+    <%= f.collection_select :location, Location.all, :id, :name %>
+
+  <%= f.submit "create trip" %>
+<% end %>

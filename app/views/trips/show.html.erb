@@ -1,0 +1,16 @@
+<h1>
+    <%= @trip.name %>
+</h1>
+<h3>Trip Description</h3>>
+<p>
+    <%= @trip.description %>
+</p>
+
+<h3>Add Item To Packing List</h3>
+<%= form_for @item do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
