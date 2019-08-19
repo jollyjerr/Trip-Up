@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>TripUp</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+            <%= stylesheet_link_tag    'application', media: 'all' %>
+                <%= javascript_include_tag 'application' %>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+</head>
 
-  <body>
+<body>
     <%= yield %>
-  </body>
+</body>
+
 </html>
