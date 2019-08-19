@@ -27,6 +27,10 @@ class TripsController < ApplicationController
         redirect_to '/'
     end
 
+    def add_user
+        @trip = Trip.find(params[:id])
+    end
+
 private
 
     def trip_params

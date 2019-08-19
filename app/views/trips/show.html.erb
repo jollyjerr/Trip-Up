@@ -5,7 +5,7 @@
 <p>
     <%= @trip.description %>
 </p>
-<section>
+<section class="ui raised padded text segment">
     <% @trip.posts.each do |post| %>
     <p><%= post.user.name %></p>
     <p><%= post.name %></p>
@@ -13,8 +13,8 @@
     <% end %>
 </section>
 
+<div>
 <h3>Add Item To Packing List</h3>
-
 <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
     <input type="hidden" name="trip_id" value="<%= @trip.id %>">
 
@@ -22,11 +22,11 @@
 
     <button type="submit"></button>
 <% end %>
+</div>
 
 
-
+<div>
 <h3>Add Comment To Trip</h3>
-
 <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
     <input type="hidden" name="trip_id" value="<%= @trip.id %>">
 
@@ -35,4 +35,5 @@
     <input type="text" name="body" placeholder="body">
     
     <button type="submit"></button>
-<% end %>
+    <% end %>
+</div>
