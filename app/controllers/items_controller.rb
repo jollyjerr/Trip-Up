@@ -7,7 +7,13 @@ class ItemsController < ApplicationController
     def create
         @item = Item.create(item_params)
         @item.user = User.find(session[:user_id])
-        redirect_to trip_path(@item.trip)
+        if @item.save
+            redirect_to trip_path(@item.trip_id)
+        else
+            @item.errors.full_messages.each do |msg|
+                puts msg
+            end
+        end
     end
 
     def edit

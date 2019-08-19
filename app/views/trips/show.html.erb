@@ -12,26 +12,27 @@
         </div>
     </div>
     <div class="column">
-        <div>
-            <h3>Add Item To Packing List</h3>
+        <div class="ui basic segment">
+            <h3 class="ui header">Add Item To Packing List</h3>
             <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
                 <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-
-                <input type="text" name="name" placeholder="name">
-
-                <button type="submit">Add Item</button>
+                <div class="ui input">
+                    <input type="text" name="name" placeholder="Hiking Boots...">
+                </div>
+                <div class="ui input">
+                    <input type="text" name="link" placeholder="https://www.rei.com/c/womens-hiking-boots...">
+                </div>
+                <button class="ui tiny basic button" type="submit">Add Item</button>
                 <% end %>
         </div>
-        <div>
-            <h3>Add Comment To Trip</h3>
+        <div class="ui basic segment">
+            <h3 class="ui header">Add Comment</h3>
             <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
                 <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-
-                <input type="text" name="name" placeholder="name">
-
-                <input type="text" name="body" placeholder="body">
-
-                <button type="submit">Comment</button>
+                <div class="ui input">
+                    <input type="text" name="body">
+                </div>
+                <button class="ui tiny basic button" type="submit">Comment</button>
                 <% end %>
         </div>
     </div>
@@ -40,9 +41,9 @@
     <div class="column">
         <section class="ui padded text segment">
             <h4 class="ui header">Packing list:</h4>
-            <ul>
+            <ul class="ui large middle aligned list">
                 <% @trip.items.reverse.each do |item| %>
-                    <li>
+                    <li class="item">
                         <%= link_to  item.name, item.link %>
                     </li>
                     <% end %>
@@ -55,9 +56,6 @@
                 <div class="ui vertical segment">
                     <p>
                         <%= post.user.name %>
-                    </p>
-                    <p>
-                        <%= post.name %>
                     </p>
                     <p>
                         <%= post.body %>
