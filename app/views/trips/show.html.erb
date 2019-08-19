@@ -1,39 +1,54 @@
-<h1>
-    <%= @trip.name %>
-</h1>
-<h3>Trip Description</h3>
-<p>
-    <%= @trip.description %>
-</p>
-<section class="ui raised padded text segment">
+<main class="ui two column very relaxed grid">
+    <div class="column">
+        <div class="ui basic segment">
+            <h1 class="ui header">
+                <%= @trip.name %>
+            </h1>
+        </div>
+        <div class="ui raised padded text segment">
+            <p>
+                <%= @trip.description %>
+            </p>
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            <h3>Add Item To Packing List</h3>
+            <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
+                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+
+                <input type="text" name="name" placeholder="name">
+
+                <button type="submit"></button>
+                <% end %>
+        </div>
+        <div>
+            <h3>Add Comment To Trip</h3>
+            <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
+                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+
+                <input type="text" name="name" placeholder="name">
+
+                <input type="text" name="body" placeholder="body">
+
+                <button type="submit"></button>
+                <% end %>
+        </div>
+    </div>
+</main>
+
+<section class="ui padded text segment">
     <% @trip.posts.each do |post| %>
-    <p><%= post.user.name %></p>
-    <p><%= post.name %></p>
-    <p><%= post.body %></p>
-    <% end %>
+        <div class="ui vertical segment">
+            <p>
+                <%= post.user.name %>
+            </p>
+            <p>
+                <%= post.name %>
+            </p>
+            <p>
+                <%= post.body %>
+            </p>
+        </div>
+        <% end %>
 </section>
-
-<div>
-<h3>Add Item To Packing List</h3>
-<%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
-    <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-
-    <input type="text" name="name" placeholder="name">
-
-    <button type="submit"></button>
-<% end %>
-</div>
-
-
-<div>
-<h3>Add Comment To Trip</h3>
-<%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
-    <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-
-    <input type="text" name="name" placeholder="name">
-
-    <input type="text" name="body" placeholder="body">
-    
-    <button type="submit"></button>
-    <% end %>
-</div>
