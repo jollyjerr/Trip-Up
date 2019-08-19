@@ -7,8 +7,8 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
 
-    <%= f.collection_select :category, Category.all, :id, :name %>
-    <%= f.collection_select :location, Location.all, :id, :name %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <%= f.collection_select :location_id, Location.all, :id, :name %>
 
   <%= f.submit "create trip" %>
 <% end %>
