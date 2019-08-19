@@ -24,9 +24,10 @@ class ItemsController < ApplicationController
         @item = Item.update(item_params)
     end
 
-    def delete
-        @item = Item.find(params[:id])
-        @item.destroy_all
+    def destroy
+        id = Item.find_by(id: params[:id]).trip_id
+        Item.find_by(id: params[:id]).destroy
+        redirect_to trip_path(id)
     end
 
 private
