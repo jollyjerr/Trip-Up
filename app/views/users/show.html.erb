@@ -1,13 +1,17 @@
 <main class="ui raised very padded text container segment">
-    <h1 class="ui header">
-        <%=@user.name%>
-    </h1>
+    <section class="ui basic segment">
+        <h1 class="ui header">
+            <%=@user.name%>
+        </h1>
+        <h4 class="ui small header">
+            <%=@user.email%>
+        </h4>
+    </section>
 
     <% if current_user.id == @user.id %>
         <div class="ui basic segment">
-            <button class="ui tiny button">
-        <%= link_to "Delete Profile", @user, method: :delete, data: { confirm: "Are you sure?" } %>
-        </button>
+            <a class="ui tiny basic positive button" href="/users/<%=@user.id%>/edit">Edit Profile</a>
+            <a class="ui tiny negative basic right floated button" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/<%=@user.id%>">Delete Profile</a>
         </div>
         <% end %>
 </main>
