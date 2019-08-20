@@ -20,7 +20,7 @@
         <% if session[:user_id] %>
             <a class="item" href="/">Trips</a>
             <a class="item">Friends</a>
-            <a class="item" href="<%user_path((User.all.select{|u| u.id == session[:user_id]})[0])%>">Profile</a>
+            <a class="item" href="<%= user_path((User.all.select{|u| u.id == session[:user_id]})[0])%>">Profile</a>
             <% end %>
 
 
