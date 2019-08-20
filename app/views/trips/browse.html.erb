@@ -1,0 +1,15 @@
+<p><% @trips.each do |trip| %>
+    <%= link_to trip.name, trip_path(trip) %>
+<% end %>
+</p>
+
+<%= form_tag ({controller: 'trips', action: 'browse'}) do %>
+    <%= select_tag "type", raw("
+    <option>Name</option>
+    <option>Date</option>
+    <option>Location</option>
+    <option>Category</option>
+    <option>Recent</option>"
+) %>
+<%= submit_tag "Apply" %>
+<% end %>

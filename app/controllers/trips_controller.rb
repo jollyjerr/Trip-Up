@@ -39,6 +39,27 @@ class TripsController < ApplicationController
         redirect_to '/home'
     end
 
+    def browse
+        byebug
+        case params[:type]
+        when nil
+            @trips = Trip.all
+            render :browse
+        when 'Name'
+            @trips = Trip.by_name
+            render :browse
+        when 'Date'
+            @trips = Trip.by_date
+            render :browse
+        when 'Location'
+            @trips = Trip.by_location
+            render :browse
+        when 'Category'
+            @trips = Trip.by_category
+            render :browse
+        end
+    end
+
 private
 
     def trip_params
