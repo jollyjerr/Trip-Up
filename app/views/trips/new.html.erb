@@ -2,15 +2,15 @@
 
 <%= form_for @trip do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+        <%= f.text_field :name %>
 
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+            <%= f.label :description %>
+                <%= f.text_area :description %>
 
-    <%= f.datetime_field :date %>
+                    <%= f.datetime_field :date %>
 
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-    <%= f.collection_select :location_id, Location.all, :id, :name %>
+                        <%= f.collection_select :category_id, Category.all, :id, :name %>
+                            <%= f.collection_select :location_id, Location.all, :id, :name %>
 
-  <%= f.submit "create trip" %>
-<% end %>
+                                <%= f.submit "create trip" %>
+                                    <% end %>
