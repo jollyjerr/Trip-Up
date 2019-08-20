@@ -16,6 +16,18 @@ class Trip < ApplicationRecord
         User.all.select{|u| self.users.all.exclude?(u)}
     end
 
+    def find_author
+        author = User.find_by(id: self.author_id)
+        if author
+           return author
+        else #random failsafe if author deletes profile
+            newowner = self.users.sample
+            self.owner_id = newowner.id
+            self.save
+            return newowner
+        end
+    end
+
     def self.by_name
         order(:name)
     end
