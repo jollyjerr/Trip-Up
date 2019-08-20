@@ -1,3 +1,13 @@
-<button class="ui tiny button">
-    <%= link_to "Delete Profile", @user, method: :delete, data: { confirm: "Really?" } %>
-</button>
+<main class="ui raised very padded text container segment">
+    <h1 class="ui header">
+        <%=@user.name%>
+    </h1>
+
+    <% if current_user.id == @user.id %>
+        <div class="ui basic segment">
+            <button class="ui tiny button">
+        <%= link_to "Delete Profile", @user, method: :delete, data: { confirm: "Are you sure?" } %>
+        </button>
+        </div>
+        <% end %>
+</main>

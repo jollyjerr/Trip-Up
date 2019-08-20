@@ -14,7 +14,7 @@
             <h4 class="ui header">Crew:</h4>
             <% @trip.users.all.each do |user| %>
                 <span class="ui basic segment">
-                    <%= user.name %>
+                    <%= link_to  user.name, user_path(user) %>
                 </span>
                 <% end %>
         </div>

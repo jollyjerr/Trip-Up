@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     def show
         require_logged_in
-        @user = current_user
+        @user = User.find(params[:id])
     end
 
     def create
