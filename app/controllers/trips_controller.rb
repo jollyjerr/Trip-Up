@@ -22,13 +22,21 @@ class TripsController < ApplicationController
         @trip = Trip.find(params[:id])
     end
 
+    def update
+        @trip = Trip.find(params[:id])
+        @trip.add_user(User.find_by(id: params[:trip][:user_ids]))
+        if @trip.save
+            redirect_to trip_path(@trip)
+        else
+            @trip.errors.full_messages.each do |msg|
+                puts msg
+            end
+        end
+    end
+
     def destroy
         @trip = Trip.find(params[:id]).destroy
         redirect_to '/'
-    end
-
-    def add_user
-        @trip = Trip.find(params[:id])
     end
 
 private

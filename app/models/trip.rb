@@ -8,4 +8,11 @@ class Trip < ApplicationRecord
     has_many :posts
     has_many :items
 
+    def add_user(user)
+        self.users << user
+    end
+
+    def find_friends
+        User.all.select{|u| self.users.all.exclude?(u)}
+    end
 end
