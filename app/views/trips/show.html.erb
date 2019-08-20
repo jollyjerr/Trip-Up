@@ -24,9 +24,9 @@
             <div class="ui basic segment">
                 <%= form_for @trip do |f| %>
                     <%= f.collection_select :user_ids, User.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
-                        <%= f.submit "Invite Friend" %>
+                        <input class="ui tiny basic button" type="submit" name="commit" value="Invite Friend" data-disable-with="Invite Friend">
+                        <% end %>
                             <% end %>
-                                <% end %>
             </div>
             <div class="ui basic segment">
                 <h3 class="ui header">Add Item To Packing List</h3>

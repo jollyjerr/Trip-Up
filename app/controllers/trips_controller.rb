@@ -36,7 +36,7 @@ class TripsController < ApplicationController
 
     def destroy
         @trip = Trip.find(params[:id]).destroy
-        redirect_to experiences_path
+        redirect_to '/home'
     end
 
 private

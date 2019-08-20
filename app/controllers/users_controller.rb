@@ -33,11 +33,12 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user = User.update(user_params)
+        @user = User.find(params[:id])
+        @user.update(user_params)
         if @user.save
             redirect_to(
-                controller: 'experiences',
-                action: 'index'
+                controller: 'users',
+                action: 'show'
             )
         else
             redirect_to(

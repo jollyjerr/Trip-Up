@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
     has_many :items
 
     def add_user(user)
-        self.users << user
+        self.users.push(user)
     end
 
     def find_friends

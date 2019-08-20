@@ -1,0 +1,19 @@
+<main class="ui raised very padded text container segment">
+    <%= form_for @user, controller: 'users', action: 'update' do |f| %>
+        <div class="ui basic segment">
+            <div class="ui transparent huge fluid input">
+                <p class="ui label">Username</p>
+                <input type="text" name="user[name]" id="user_name" value="<%=@user.name%>">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui transparent huge fluid input">
+                <p class="ui label">Email</p>
+                <input type="text" name="user[email]" id="user_email" value="<%=@user.email%>">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <input class="ui basic yellow button" type="submit" name="commit" value="Update User" data-disable-with="Update User">
+        </div>
+        <% end %>
+</main>
