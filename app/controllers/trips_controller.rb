@@ -43,7 +43,6 @@ class TripsController < ApplicationController
     end
 
     def browse
-        byebug
         case params[:type]
         when nil
             @trips = Trip.all
@@ -59,6 +58,32 @@ class TripsController < ApplicationController
             render :browse
         when 'Category'
             @trips = Trip.by_category
+            render :browse
+        when 'Recent'
+            @trips = Trip.by_most_recent
+            render :browse
+        end
+    end
+
+    def search
+        case params[:type]
+        when nil
+            @trips = Trip.all
+            render :browse
+        when 'Name'
+            @trips = Trip.by_specific_name(params[:search])
+            render :browse
+        when 'Date'
+            @trips = Trip.by_specific_date(params[:search])
+            render :browse
+        when 'Location'
+            @trips = Trip.by_one_location(params[:search])
+            render :browse
+        when 'Category'
+            @trips = Trip.by_one_category(params[:search])
+            render :browse
+        when 'User'
+            @trips = Trip.by_specific_user(params[:search])
             render :browse
         end
     end

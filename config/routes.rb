@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/add_user' => 'trips#add_user'
   get "/trips/browse" => "trips#browse"
   post "/trips/browse" => "trips#browse"
+  get "/trips/search" => "trips#search"
+  post "/trips/search" => "trips#search"
   resources :users
   resources :trips
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

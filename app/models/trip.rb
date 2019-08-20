@@ -37,14 +37,7 @@ class Trip < ApplicationRecord
     end
 
     def self.by_category
-        categories = Category.by_name
-        trips_by_category = []
-        categories.each do |c|
-            if Trip.find_by(category_id: c.id) != nil
-                trips_by_category << Trip.find_by(category_id: c.id)
-            end
-        end
-        trips_by_category
+        Trip.all.sort_by {|trip| trip.category.name}
     end
 
     def self.by_most_recent
@@ -53,35 +46,30 @@ class Trip < ApplicationRecord
     end
 
     def self.by_location
-        locations = Location.by_name
-        trips_by_location = []
-        locations.each do |l|
-            if Trip.find_by(location_id: l.id) != nil
-                trips_by_location << Trip.find_by(location_id: l.id)
-            end
-        end
-        trips_by_location
+        Trip.all.sort_by {|trip| trip.location.name}
     end
 
-    def self.one_location location
-        Trip.find_all(location_id: location.id)
+    def self.by_one_location location
+        Trip.all.select{|trip| trip.location.name == location}
     end
 
-    def self.one_category category
-        Trip.find_all(category_id: category.id)
+    def self.by_one_category category
+        Trip.all.select{|trip| trip.category.name == category}
     end
 
     def self.by_specific_date date
-        Trip.find_all(date: date)
+        Trip.all.select{|trip| trip.date == date}
     end
 
     def self.by_specific_name name
-        Trip.find_by(name: name)
+        Trip.all.select{|trip| trip.name == name}
     end
 
     def self.by_specific_user user
-        Trip.select do |t|
-            t.users.find_by(id: user.id)
+        Trip.all.select do |trip|
+            trip.users.select do |user|
+                user.name == user
+            end
         end
     end
 
