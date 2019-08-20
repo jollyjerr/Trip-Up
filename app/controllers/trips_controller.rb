@@ -4,9 +4,12 @@ class TripsController < ApplicationController
         @trip = Trip.new
     end
 
-    def create
-        @trip = Trip.create(trip_params)
-        @trip.users << User.find_by(id: session[:user_id])
+    def create 
+        author = User.find_by(id: session[:user_id])
+        @trip = Trip.new(trip_params)
+        @trip.author_id = author.id
+        @trip.users << author
+        @trip.save
         if @trip.save
             redirect_to trip_path(@trip)
         else

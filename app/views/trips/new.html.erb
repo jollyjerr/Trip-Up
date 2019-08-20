@@ -1,16 +1,50 @@
-<h1>Create a New Trip</h1>
-
-<%= form_for @trip do |f| %>
-    <%= f.label :name %>
-        <%= f.text_field :name %>
-
-            <%= f.label :description %>
-                <%= f.text_area :description %>
-
-                    <%= f.datetime_field :date %>
-
-                        <%= f.collection_select :category_id, Category.all, :id, :name %>
-                            <%= f.collection_select :location_id, Location.all, :id, :name %>
-
-                                <%= f.submit "create trip" %>
-                                    <% end %>
+<main class="ui raised very padded text container segment">
+    <div class="ui basic segment">
+        <h1 class="ui huge header">Create a New Trip</h1>
+    </div>
+    <%= form_for @trip do |f| %>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Trip Name
+                </div>
+                <input type="text" name="trip[name]" id="trip_name">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Description
+                </div>
+                <textarea name="trip[description]" id="trip_description"></textarea>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Date and Time
+                </div>
+                <input type="datetime-local" name="trip[date]" id="trip_date">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Category
+                </div>
+                <%= f.collection_select :category_id, Category.all, :id, :name %>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Location
+                </div>
+                <%= f.collection_select :location_id, Location.all, :id, :name %>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <input class="ui positive button" type="submit" name="commit" value="Create Trip!" data-disable-with="create trip">
+        </div>
+        <% end %>
+</main>
