@@ -1,3 +1,7 @@
+
+<% if @trips == [] %>
+    No Results Found
+<% end %>
 <p><% @trips.each do |trip| %>
     <%= link_to trip.name, trip_path(trip) %>
 <% end %>
@@ -12,4 +16,18 @@
     <option>Recent</option>"
 ) %>
 <%= submit_tag "Apply" %>
+<% end %>
+
+<%= form_tag({controller: 'trips', action: 'search'}) do %>
+    <%= label_tag "Search type: " %>
+    <%= select_tag "type", raw("
+    <option>Name</option>
+    <option>User</option>
+    <option>Date</option>
+    <option>Location</option>
+    <option>Category</option>"
+    ) %>
+    <%= label_tag "Search for: " %>
+    <%= text_field_tag "search" %>
+    <%= submit_tag "Search" %>
 <% end %>
