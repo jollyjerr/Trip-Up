@@ -28,4 +28,11 @@
                         <% end %>
                 </div>
                 <% end %>
+                    <% if current_user.not_friends.include?(@user) %>
+                        <div class="ui basic segment">
+                            <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: @user.id}) do %>
+                                <input class="ui basic positive button" type=submit value='Send Friend Request'>
+                                <% end %>
+                        </div>
+                        <% end %>
 </main>
