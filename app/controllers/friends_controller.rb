@@ -14,4 +14,12 @@ class FriendsController < ApplicationController
 
         redirect_to friends_path
     end
+
+    def add
+        @user = current_user
+        friend = User.find_by(id: params[:id])
+        @user.accept_request(friend)
+
+        redirect_to friends_path
+    end
 end

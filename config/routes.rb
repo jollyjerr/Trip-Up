@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "/trips/browse" => "trips#browse"
   get "/trips/search" => "trips#search"
   post "/trips/search" => "trips#search"
+  post "/friends/add" => "friends/add"
   resources :posts, only: [:new, :create, :edit, :update, :destroy]
   resources :items, only: [:new, :create, :edit, :update, :destroy]
   resources :friends, only: [:index, :create, :destroy]

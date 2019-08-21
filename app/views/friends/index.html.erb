@@ -1,34 +1,51 @@
 <main class="ui two column doubling stackable grid container">
     <section class="column">
         <div class="ui segment">
-            <% if @user.requested_friends? %>
+            <% if @user.friend_requests? %>
                 <div class="ui vertical segment">
                     <header class="ui basic segment">
-                        <h3 class="ui header">Pending:</h3>
+                        <h3 class="ui header">Friend Requests:</h3>
                     </header>
-                    <% @pending.each do |friend| %>
+                    <% @requests.each do |friend| %>
                         <section class="ui basic segment">
-                            <div class="ui yellow header">
+                            <div class="ui green header">
                                 <%= friend.name%>
                             </div>
+                            <%= form_tag ({controller: 'friends', action: 'add', method: 'post', id: friend.id}) do %>
+                                <input class="ui basic button" type=submit value='Accept'>
+                                <% end %>
                         </section>
                         <% end %>
                 </div>
                 <% end %>
-                    <header class="ui basic segment">
-                        <h3 class="ui header">Your Friends:</h3>
-                    </header>
-                    <div class="ui vertical segment">
-                        <% if @user.friends? %>
-                            <% @friends.each do |friend| %>
+                    <% if @user.requested_friends? %>
+                        <div class="ui vertical segment">
+                            <header class="ui basic segment">
+                                <h3 class="ui header">Pending:</h3>
+                            </header>
+                            <% @pending.each do |friend| %>
                                 <section class="ui basic segment">
-                                    <div class="ui header">
-                                        <%= link_to  friend.name, user_path(friend) %>
+                                    <div class="ui yellow header">
+                                        <%= friend.name%>
                                     </div>
                                 </section>
                                 <% end %>
-                                    <% end %>
-                    </div>
+                        </div>
+                        <% end %>
+                            <header class="ui basic segment">
+                                <h3 class="ui header">Your Friends:</h3>
+                            </header>
+                            <div class="ui vertical segment">
+                                <% if @user.friends? %>
+                                    <% @friends.each do |friend| %>
+                                        <section class="ui basic segment">
+                                            <div class="ui header">
+                                                <%= link_to  friend.name, user_path(friend) %>
+                                            </div>
+                                        </section>
+                                        <% end %>
+                                            <% end %>
+                            </div>
         </div>
     </section>
     <section class="column">

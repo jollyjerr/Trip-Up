@@ -23,7 +23,7 @@
         <% if @trip.find_friends.any? %>
             <div class="ui basic segment">
                 <%= form_for @trip do |f| %>
-                    <%= f.collection_select :user_ids, User.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
+                    <%= f.collection_select :user_ids, current_user.friends.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
                         <input class="ui tiny basic button" type="submit" name="commit" value="Invite Friend" data-disable-with="Invite Friend">
                         <% end %>
                             <% end %>
