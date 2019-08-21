@@ -91,3 +91,4 @@
         </section>
     </div>
 </div>
+<p><%= link_to(image_tag("https://maps.googleapis.com/maps/api/staticmap?markers=#{@trip.location.latitude},#{@trip.location.longitude}&zoom=12&size=400x400&key=AIzaSyDw1EI5EJis-zY266Ea96wUBH-qQ-7jXBs"), "https://www.google.com/maps/place/#{@trip.location.city},+#{@trip.location.state}") %></p>
