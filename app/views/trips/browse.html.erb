@@ -1,33 +1,72 @@
-
 <% if @trips == [] %>
-    No Results Found
-<% end %>
-<p><% @trips.each do |trip| %>
-    <%= link_to trip.name, trip_path(trip) %>
-<% end %>
-</p>
+    <main class="ui raised very padded text container segment">
+        <h1 class="ui header">No Results Found</h1>
+        <a class="ui mini positive button" href="/trips/new">Start your own?</a>
+        <a class="ui mini teal button" href="/trips/browse">Back</a>
+    </main>
+    <img class="ui massive centered rounded image" src="https://images.unsplash.com/photo-1561363702-e07252da3399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="sad mountains">
+    <% else %>
+        <main class="ui two column doubling stackable grid container">
+            <section class="column">
+                <div class="ui segment">
+                    <div class="ui basic segment">
+                        <h4 class="ui header">Sort by:</h4>
+                        <div class="ui fluid input">
+                            <%= form_tag ({controller: 'trips', action: 'browse'}) do %>
+                                <%= select_tag "type", raw("
+                                    <option>Name</option>
+                                    <option>Date</option>
+                                    <option>Location</option>
+                                    <option>Category</option>
+                                    <option>Recent</option>"
+                                ) %>
+                                    <input class="ui mini basic button" type="submit" name="commit" value="Apply" data-disable-with="Apply">
+                                    <% end %>
+                        </div>
+                    </div>
+                    <div class="ui basic segment">
+                        <h4 class="ui header">Search by:</h4>
+                        <%= form_tag({controller: 'trips', action: 'search'}) do %>
+                            <%= select_tag "type", raw("
+                            <option>Name</option>
+                            <option>User</option>
+                            <option>Date</option>
+                            <option>Location</option>
+                            <option>Category</option>"
+                            ) %>
+                                <div class="ui action input">
+                                    <input type="text" name="search" id="search">
+                                    <input class="ui mini basic button" type="submit" name="commit" value="Search" data-disable-with="Search">
+                                </div>
+                                <% end %>
+                    </div>
+                </div>
+            </section>
 
-<%= form_tag ({controller: 'trips', action: 'browse'}) do %>
-    <%= select_tag "type", raw("
-    <option>Name</option>
-    <option>Date</option>
-    <option>Location</option>
-    <option>Category</option>
-    <option>Recent</option>"
-) %>
-<%= submit_tag "Apply" %>
-<% end %>
-
-<%= form_tag({controller: 'trips', action: 'search'}) do %>
-    <%= label_tag "Search type: " %>
-    <%= select_tag "type", raw("
-    <option>Name</option>
-    <option>User</option>
-    <option>Date</option>
-    <option>Location</option>
-    <option>Category</option>"
-    ) %>
-    <%= label_tag "Search for: " %>
-    <%= text_field_tag "search" %>
-    <%= submit_tag "Search" %>
-<% end %>
+            <section class="column">
+                <% @trips.each do |trip| %>
+                    <div class="ui vertical segment">
+                        <h3 class="ui header">
+                            <%= link_to  trip.name, trip_path(trip) %>
+                        </h3>
+                        <h5 class="ui header">
+                            <%= trip.find_author.name %>
+                        </h5>
+                        <p class="ui segment">
+                            <%= trip.description %>
+                        </p>
+                        <% if current_user.id == trip.author_id %>
+                            <div class="ui buttons">
+                                <button class="ui tiny button">
+                                <%= link_to  "Edit", edit_trip_path(trip) %>
+                            </button>
+                                <button class="ui tiny button">
+                                <%= link_to  "Delete Trip", trip_path(trip), method: :delete, data: { confirm: "Are you sure?" } %>
+                            </button>
+                            </div>
+                            <% end %>
+                    </div>
+                    <% end %>
+            </section>
+        </main>
+        <% end %>
