@@ -9,6 +9,9 @@
             <p>
                 <%= @trip.description %>
             </p>
+            <p>
+                <%= @trip.date.strftime("%m %d %Y at %H:%M") %>
+            </p>
         </div>
         <div class="ui basic segment">
             <h4 class="ui header">Crew:</h4>
@@ -26,41 +29,42 @@
             <%= link_to(image_tag("https://maps.googleapis.com/maps/api/staticmap?markers=#{@trip.location.latitude},#{@trip.location.longitude}&zoom=12&size=400x400&key=AIzaSyDw1EI5EJis-zY266Ea96wUBH-qQ-7jXBs"), "https://www.google.com/maps/place/#{@trip.location.city},+#{@trip.location.state}") %>
         </div>
     </div>
-    <div>
-        <% if @trip.find_friends(current_user).any? %>
-            <div class="ui segment">
-                <%= form_for @trip do |f| %>
-                    <%= f.collection_select :user_ids, current_user.friends.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
-                        <input class="ui tiny basic button" type="submit" name="commit" value="Invite Friend" data-disable-with="Invite Friend">
-                        <% end %>
-            </div>
-            <% else %>
-                <div class="ui basic segment"></div>
-                <% end %>
-                    <div class="ui segment">
-                        <h3 class="ui header">Add Item To Packing List</h3>
-                        <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
-                            <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-                            <div class="ui input">
-                                <input type="text" name="name" placeholder="Hiking Boots...">
-                            </div>
-                            <div class="ui input">
-                                <input type="text" name="link" placeholder="https://www.rei.com/c/womens-hiking-boots...">
-                            </div>
-                            <button class="ui tiny basic button" type="submit">Add Item</button>
+    <% if @trip.users.include?(current_user) %>
+        <div>
+            <% if @trip.find_friends(current_user).any? %>
+                <div class="ui segment">
+                    <%= form_for @trip do |f| %>
+                        <%= f.collection_select :user_ids, current_user.friends.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
+                            <input class="ui tiny basic button" type="submit" name="commit" value="Invite Friend" data-disable-with="Invite Friend">
                             <% end %>
-                    </div>
-                    <div class="ui segment">
-                        <h3 class="ui header">Add Comment</h3>
-                        <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
-                            <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-                            <div class="ui input">
-                                <input type="text" name="body">
-                            </div>
-                            <button class="ui tiny basic button" type="submit">Comment</button>
-                            <% end %>
-                    </div>
-    </div>
+                </div>
+                <% else %>
+                    <div class="ui basic segment"></div>
+                    <% end %>
+                        <div class="ui segment">
+                            <h3 class="ui header">Add Item To Packing List</h3>
+                            <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
+                                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+                                <div class="ui input">
+                                    <input type="text" name="name" placeholder="Hiking Boots...">
+                                </div>
+                                <div class="ui input">
+                                    <input type="text" name="link" placeholder="https://www.rei.com/c/womens-hiking-boots...">
+                                </div>
+                                <button class="ui tiny basic button" type="submit">Add Item</button>
+                                <% end %>
+                        </div>
+                        <div class="ui segment">
+                            <h3 class="ui header">Add Comment</h3>
+                            <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
+                                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+                                <div class="ui input">
+                                    <input type="text" name="body">
+                                </div>
+                                <button class="ui tiny basic button" type="submit">Comment</button>
+                                <% end %>
+                        </div>
+        </div>
 </main>
 <div class="ui two column doubling stackable grid container">
     <div class="column">
@@ -102,3 +106,4 @@
         </div>
         <% end %>
 </div>
+<% end %>
