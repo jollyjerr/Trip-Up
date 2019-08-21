@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   post "/trips/search" => "trips#search"
   post "/friends/add" => "friends/add"
   post "/friends/reject" => "friends/reject"
+  post "/friends/remove" => "friends/remove"
   resources :posts, only: [:new, :create, :edit, :update, :destroy]
   resources :items, only: [:new, :create, :edit, :update, :destroy]
-  resources :friends, only: [:index, :create, :destroy]
+  resources :friends, only: [:index, :create]
   resources :users
   resources :trips
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

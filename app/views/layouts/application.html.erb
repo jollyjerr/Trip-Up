@@ -22,7 +22,13 @@
 
         <% if logged_in? %>
             <a class="item" href="/">My Trips</a>
+            <% if current_user.friend_requests? %>
+            <a class="item" href="<%= friends_path %>">
+              Friends
+              <div class="floating ui yellow circular label"><%=current_user.requested_friends.count%></div></a>
+            <% else %>
             <a class="item" href="<%= friends_path %>">Friends</a>
+            <% end %>
             <a class="item" href="<%= user_path(current_user)%>">Profile</a>
             <a class="item" href="/trips/browse">Browse</a>
             <% end %>

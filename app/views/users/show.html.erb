@@ -1,11 +1,18 @@
 <main class="ui raised very padded text container segment">
     <section class="ui basic segment">
-        <h1 class="ui header">
-            <%=@user.name%>
-        </h1>
-        <h4 class="ui small header">
-            <%=@user.email%>
-        </h4>
+        <div class="ui basic clearing segment">
+            <h1 class="ui left floated header">
+                <%=@user.name%>
+            </h1>
+            <% if current_user.friends_with?(@user) %>
+                <h4 class="ui green right floated header">Friends</h4>
+                <% end %>
+        </div>
+        <div class="ui basic segment">
+            <h4 class="ui small header">
+                <%=@user.email%>
+            </h4>
+        </div>
     </section>
 
     <% if current_user.id == @user.id %>
@@ -14,4 +21,11 @@
             <a class="ui tiny negative basic right floated button" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/<%=@user.id%>">Delete Profile</a>
         </div>
         <% end %>
+            <% if current_user.friends_with?(@user) %>
+                <div class="ui basic segment">
+                    <%= form_tag ({controller: 'friends', action: 'remove', method: 'post', id: @user.id}) do %>
+                        <input class="ui basic tiny negative button" type=submit value='Unfriend'>
+                        <% end %>
+                </div>
+                <% end %>
 </main>
