@@ -46,7 +46,7 @@ class Trip < ApplicationRecord
     end
 
     def self.by_specific_date date
-        Trip.all.select{|trip| trip.date == date}
+        Trip.all.select{|trip| trip.date.to_s.include?(date)}
     end
 
     def self.by_specific_name name
