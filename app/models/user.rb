@@ -10,4 +10,30 @@ class User < ApplicationRecord
     has_and_belongs_to_many :trips
     has_many :posts
     has_many :items
+
+    def friends?
+        self.friends
+    end
+
+    def fiend_requests?
+        self.pending_friends
+    end
+
+    def requested_friends?
+        self.requested_friends
+    end
+
+    def invite_friend(user)
+        self.friend_request(user)
+    end
+
+    def not_friends
+        potential = []
+        User.all.each do |user|
+            if(self.friends_with?(user) != true && self != user && self.friends.include?(user) != true && self.pending_friends.include?(user) != true && self.requested_friends.include?(user) != true)
+                potential << user
+            end
+        end
+        potential
+    end
 end

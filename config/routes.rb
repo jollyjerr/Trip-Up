@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:new, :create, :edit, :update, :destroy]
-  resources :items, only: [:new, :create, :edit, :update, :destroy]
   root 'experiences#start'
   get '/login' => 'sessions#new'
   get '/home' => 'experiences#index'
@@ -12,6 +10,9 @@ Rails.application.routes.draw do
   post "/trips/browse" => "trips#browse"
   get "/trips/search" => "trips#search"
   post "/trips/search" => "trips#search"
+  resources :posts, only: [:new, :create, :edit, :update, :destroy]
+  resources :items, only: [:new, :create, :edit, :update, :destroy]
+  resources :friends, only: [:index, :create, :destroy]
   resources :users
   resources :trips
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

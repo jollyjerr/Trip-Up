@@ -22,7 +22,7 @@
 
         <% if logged_in? %>
             <a class="item" href="/">My Trips</a>
-            <a class="item">Friends</a>
+            <a class="item" href="<%= friends_path %>">Friends</a>
             <a class="item" href="<%= user_path(current_user)%>">Profile</a>
             <a class="item" href="/trips/browse">Browse</a>
             <% end %>

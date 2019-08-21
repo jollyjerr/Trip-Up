@@ -1,0 +1,49 @@
+<main class="ui two column doubling stackable grid container">
+    <section class="column">
+        <div class="ui segment">
+            <% if @user.requested_friends? %>
+                <div class="ui vertical segment">
+                    <header class="ui basic segment">
+                        <h3 class="ui header">Pending:</h3>
+                    </header>
+                    <% @pending.each do |friend| %>
+                        <section class="ui basic segment">
+                            <div class="ui yellow header">
+                                <%= friend.name%>
+                            </div>
+                        </section>
+                        <% end %>
+                </div>
+                <% end %>
+                    <header class="ui basic segment">
+                        <h3 class="ui header">Your Friends:</h3>
+                    </header>
+                    <div class="ui vertical segment">
+                        <% if @user.friends? %>
+                            <% @friends.each do |friend| %>
+                                <section class="ui basic segment">
+                                    <div class="ui header">
+                                        <%= link_to  friend.name, user_path(friend) %>
+                                    </div>
+                                </section>
+                                <% end %>
+                                    <% end %>
+                    </div>
+        </div>
+    </section>
+    <section class="column">
+        <header class="ui basic segment">
+            <h3 class="ui header">Find Friends</h3>
+        </header>
+        <% @user.not_friends.sample(10).each do |user| %>
+            <section class="ui basic segment">
+                <div class="ui left floated header">
+                    <%= link_to user.name, user_path(user) %>
+                </div>
+                <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
+                    <input class="ui basic button" type=submit value='Add Friend'>
+                    <% end %>
+            </section>
+            <% end %>
+    </section>
+</main>
