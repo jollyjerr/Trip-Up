@@ -46,11 +46,11 @@ class Trip < ApplicationRecord
     end
 
     def self.by_location
-        Trip.all.sort_by {|trip| trip.location.name}
+        Trip.all.sort_by {|trip| trip.location.state}
     end
 
     def self.by_one_location location
-        Trip.all.select{|trip| trip.location.name == location}
+        Trip.all.select{|trip| trip.location.address.downcase.include?(location)}
     end
 
     def self.by_one_category category
