@@ -11,9 +11,10 @@ class Trip < ApplicationRecord
     def add_user(user)
         self.users.push(user)
     end
-
-    def find_friends
-        User.all.select{|u| self.users.all.exclude?(u)}
+ 
+    def find_friends(user)
+        potential = user.friends
+        potential.select{|u| self.users.all.exclude?(u)}
     end
 
     def find_author

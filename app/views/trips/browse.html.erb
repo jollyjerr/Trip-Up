@@ -56,17 +56,17 @@
                             <%= trip.description %>
                         </p>
                         <% if current_user.id == trip.author_id %>
-                            <div class="ui buttons">
+                            <!-- <div class="ui buttons">
                                 <button class="ui tiny button">
-                                <%= link_to  "Edit", edit_trip_path(trip) %>
-                            </button>
-                                <button class="ui tiny button">
+                                <= link_to  "Edit", edit_trip_path(trip) >
+                            </button> -->
+                            <button class="ui tiny button">
                                 <%= link_to  "Delete Trip", trip_path(trip), method: :delete, data: { confirm: "Are you sure?" } %>
                             </button>
-                            </div>
-                            <% end %>
                     </div>
                     <% end %>
+                        </div>
+                        <% end %>
             </section>
         </main>
         <% end %>
