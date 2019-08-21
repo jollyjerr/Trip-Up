@@ -57,10 +57,6 @@ class Trip < ApplicationRecord
         Trip.all.select{|trip| trip.category.name == category}
     end
 
-    def self.by_specific_date date
-        Trip.all.select{|trip| trip.date.to_s.include?(date)}
-    end
-
     def self.by_specific_name name
         Trip.all.select{|trip| trip.name == name}
     end

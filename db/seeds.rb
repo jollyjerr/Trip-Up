@@ -16,11 +16,9 @@ Category.create(:name => "Hunting")
 Category.create(:name => "Backpacking")
 Category.create(:name => "Other")
 
-Location.create(:city => "Denver", :state => "CO")
-Location.create(:city => "Boulder", :state => "CO")
-Location.create(:city => "New York City", :state => "NY")
-Location.create(:city => "Easton", :state => "PA")
-Location.create(:city => "Carlsbad", :state => "CA")
-Location.create(:city => "Portland", :state => "OR")
-Location.create(:city => "Seattle", :state => "WA")
-Location.create(:city => "Tampa", :state => "FL")
+cities = ["New York,NY", "Los Angeles,CA", "Chicago,IL", "Houston,TX", "Phoenix,AZ", "Philadelphia,PA", "San Antonio,TX", "San Diego,CA", "Dallas,TX", "San Jose,CA", "Austin,TX", "Jacksonville,FL", "Fort Worth,TX", "Columbus,OH", "San Francisco,CA", "Charlotte,NC", "Indianapolis,IN", "Seattle,WA", "Denver,CO", "Boston,MA", "Detroit,MI", "Nashville,TN", "Portland,OR", "Memphis,TN"]
+
+cities.each do |city|
+    c = city.split(',')
+    Location.create(:city => c[0], :state => c[1])
+end

@@ -20,7 +20,7 @@ class User < ApplicationRecord
     end
 
     def requested_friends?
-        self.requested_friends
+        self.requested_friends.any?
     end
 
     def invite_friend(user)
