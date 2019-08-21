@@ -2,7 +2,7 @@
     <section class="column">
         <div class="ui segment">
             <% if @user.friend_requests? %>
-                <div class="ui vertical segment">
+                <div class="ui vertical clearing segment">
                     <header class="ui basic segment">
                         <h3 class="ui header">Friend Requests:</h3>
                     </header>
@@ -12,8 +12,11 @@
                                 <%= friend.name%>
                             </div>
                             <%= form_tag ({controller: 'friends', action: 'add', method: 'post', id: friend.id}) do %>
-                                <input class="ui basic button" type=submit value='Accept'>
+                                <input class="ui basic tiny left floated positive button" type=submit value='Accept'>
                                 <% end %>
+                                    <%= form_tag ({controller: 'friends', action: 'reject', method: 'post', id: friend.id}) do %>
+                                        <input class="ui basic tiny right floated negative button" type=submit value='Politely Refuse'>
+                                        <% end %>
                         </section>
                         <% end %>
                 </div>

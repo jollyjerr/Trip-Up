@@ -22,4 +22,20 @@ class FriendsController < ApplicationController
 
         redirect_to friends_path
     end
+
+    def reject
+        @user = current_user
+        friend = User.find_by(id: params[:id])
+        @user.decline_request(friend)
+
+        redirect_to friends_path
+    end
+
+    def destroy
+        @user = current_user
+        friend = User.find_by(id: params[:id])
+        @user.remove_friend(friend)
+
+        redirect_to user_path(friend)
+    end
 end
