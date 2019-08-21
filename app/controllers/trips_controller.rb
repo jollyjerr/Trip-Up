@@ -66,24 +66,25 @@ class TripsController < ApplicationController
     end
 
     def search
+        s = params[:search].downcase
         case params[:type]
         when nil
             @trips = Trip.all
             render :browse
         when 'Name'
-            @trips = Trip.by_specific_name(params[:search])
+            @trips = Trip.by_specific_name(s)
             render :browse
         when 'Date'
-            @trips = Trip.by_specific_date(params[:search])
+            @trips = Trip.by_specific_date(s)
             render :browse
         when 'Location'
-            @trips = Trip.by_one_location(params[:search])
+            @trips = Trip.by_one_location(s)
             render :browse
         when 'Category'
-            @trips = Trip.by_one_category(params[:search])
+            @trips = Trip.by_one_category(s)
             render :browse
         when 'User'
-            @trips = Trip.by_specific_user(params[:search])
+            @trips = Trip.by_specific_user(s)
             render :browse
         end
     end
