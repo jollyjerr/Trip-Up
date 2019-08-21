@@ -74,9 +74,6 @@ class TripsController < ApplicationController
         when 'Name'
             @trips = Trip.by_specific_name(s)
             render :browse
-        when 'Date'
-            @trips = Trip.by_specific_date(s)
-            render :browse
         when 'Location'
             @trips = Trip.by_one_location(s)
             render :browse
