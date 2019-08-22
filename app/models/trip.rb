@@ -66,13 +66,7 @@ class Trip < ApplicationRecord
         Trip.all.select{|trip| trip.name.downcase.include?(name)}
     end
 
-    def self.by_specific_user username
-        Trip.all.select do |trip|
-            trip.users.select do |user|
-                user.name.downcase.include?(username)
-            end
-        end
-    end
+  
 
     def location_attributes=(location_attributes)
         self.build_location(location_attributes)
