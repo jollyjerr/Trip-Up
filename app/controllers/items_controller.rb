@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(item_params)
+        @item[:link] = "https://www.amazon.com/s?k=#{@item[:name]}"
         @item.user = User.find(session[:user_id])
         if @item.save
             redirect_to trip_path(@item.trip_id)

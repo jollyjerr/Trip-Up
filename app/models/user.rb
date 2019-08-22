@@ -36,4 +36,5 @@ class User < ApplicationRecord
         end
         potential
     end
+    
 end
