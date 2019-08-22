@@ -15,12 +15,12 @@
             </h4>
         </div>
         <% if @user.twitter && @user.twitter.length > 1 %>
-            <a href="<%= @user.twitter%>">
+            <a href="<%= @user.twitter%>" target="blank">
                 <i class="large twitter icon"></i>
             </a>
             <% end %>
                 <% if @user.instagram && @user.instagram.length > 1 %>
-                    <a href="<%= @user.instagram%>">
+                    <a href="<%= @user.instagram%>" target="blank">
                         <i class="large instagram icon"></i>
                     </a>
                     <% end %>
