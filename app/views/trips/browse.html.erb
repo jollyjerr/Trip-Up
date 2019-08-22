@@ -28,7 +28,8 @@
                         <h4 class="ui header">Search by:</h4>
                         <%= form_tag({controller: 'trips', action: 'search'}) do %>
                             <%= select_tag "type", raw("
-                            <option>Name</option>
+                            <option>Select</option>
+                            <option>Trip Name</option>
                             <option>User</option>
                             <option>Date</option>
                             <option>Location</option>

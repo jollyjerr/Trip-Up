@@ -55,21 +55,21 @@ class Trip < ApplicationRecord
     end
 
     def self.by_one_location location
-        Trip.all.select{|trip| trip.location.address.downcase.include?(location)}
+        Trip.all.select{|trip| trip.location.city.downcase.include?(location)}
     end
 
     def self.by_one_category category
-        Trip.all.select{|trip| trip.category.name == category}
+        Trip.all.select{|trip| trip.category.name.downcase.include?(category)}
     end
 
     def self.by_specific_name name
-        Trip.all.select{|trip| trip.name == name}
+        Trip.all.select{|trip| trip.name.downcase.include?(name)}
     end
 
-    def self.by_specific_user user
+    def self.by_specific_user username
         Trip.all.select do |trip|
             trip.users.select do |user|
-                user.name == user
+                user.name.downcase.include?(username)
             end
         end
     end
