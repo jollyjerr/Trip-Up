@@ -6,9 +6,11 @@
             </h1>
         </div>
         <div class="ui raised padded text segment">
+            <h3>Description:</h3>
             <p>
                 <%= @trip.description %>
             </p>
+            <h3>Date/Time:</h3>
             <p>
                 <%= @trip.date.strftime("%m %d %Y at %H:%M") %>
             </p>
@@ -25,7 +27,8 @@
                     <% end %>
             </div>
         </div>
-        <div class="ui center floated basic segment">
+        <div class="ui floated basic segment">
+            <h3>Location:</h3>
             <%= link_to(image_tag("https://maps.googleapis.com/maps/api/staticmap?markers=#{@trip.location.latitude},#{@trip.location.longitude}&zoom=12&size=300x300&key=AIzaSyDw1EI5EJis-zY266Ea96wUBH-qQ-7jXBs"), "https://www.google.com/maps/place/#{@trip.location.city},+#{@trip.location.state}") %>
         </div>
     </div>
@@ -34,6 +37,7 @@
             <div class="ui basic segment"></div>
             <% if @trip.find_friends(current_user).any? %>
                 <div class="ui segment">
+                    <h3>Invite Friends!</h3>
                     <%= form_for @trip do |f| %>
                         <%= f.collection_select :user_ids, current_user.friends.all.select{|u| @trip.users.all.exclude?(u)}, :id, :name %>
                             <input class="ui tiny basic button" type="submit" name="commit" value="Invite Friend" data-disable-with="Invite Friend">
