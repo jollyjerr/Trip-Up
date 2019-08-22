@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
             @user = user
             redirect_to(controller: 'experiences', action: 'index')
         else
-            redirect_to(controller: 'sessions', action: 'new')
+            @user = "User not found"
+            render :new
         end
     end
 
