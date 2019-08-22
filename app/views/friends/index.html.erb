@@ -73,5 +73,16 @@
                 </div>
             </section>
             <% end %>
+            <header class="ui basic segment">
+            <h3 class="ui header">Search Friends</h3>
+        </header>
+            <section class="ui basic segment">
+                <div class="ui basic segment">
+                    <%= form_tag ({controller: 'friends', action: 'search'}) do %>
+                        <input type="text" name="search" id="search">
+                        <input class="ui mini basic button" type="submit" name="commit" value="Search" data-disable-with="Search">
+                    <% end %>
+                </div>
+            </section>
     </section>
 </main>

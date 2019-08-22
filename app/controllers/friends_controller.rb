@@ -38,4 +38,15 @@ class FriendsController < ApplicationController
 
         redirect_to user_path(friend)
     end
+
+    def search
+        @search = params[:search]
+        @results = User.all.select do |user|
+            user.name.include?(@search)
+        end
+    end
+
+    def show
+        
+    end
 end
