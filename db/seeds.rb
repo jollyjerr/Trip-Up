@@ -6,9 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.destroy_all
-Location.destroy_all
-
 
 Category.create(:name => "Biking")
 Category.create(:name => "Hiking")
@@ -19,9 +16,8 @@ Category.create(:name => "Hunting")
 Category.create(:name => "Backpacking")
 Category.create(:name => "Other")
 
-cities = ["New York,NY", "Los Angeles,CA", "Chicago,IL", "Houston,TX", "Phoenix,AZ", "Philadelphia,PA", "San Antonio,TX", "San Diego,CA", "Dallas,TX", "San Jose,CA", "Austin,TX", "Jacksonville,FL", "Fort Worth,TX", "Columbus,OH", "San Francisco,CA", "Charlotte,NC", "Indianapolis,IN", "Seattle,WA", "Denver,CO", "Boston,MA", "Detroit,MI", "Nashville,TN", "Portland,OR", "Memphis,TN"]
+states = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
 
-cities.each do |city|
-    c = city.split(',')
-    Location.create(:city => c[0], :state => c[1])
+states.each do |state|
+    State.create(:name => state)
 end

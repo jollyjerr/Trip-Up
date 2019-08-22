@@ -30,4 +30,15 @@
             <input class="ui teal button" type="submit" name="commit" value="Lets go!" data-disable-with="create">
         </div>
         <% end %>
+        <% if @user.errors.any? %>
+        <div class="ui padded text segment">
+            <div class="ui visible message">
+                <p>
+                    <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </p>
+            </div>
+        </div>
+        <% end %>
 </main>

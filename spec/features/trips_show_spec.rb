@@ -23,5 +23,5 @@ describe 'Trips#show' do
         expect(page).to have_content("Backpackin'")
         expect(page).to have_content("Wooohooo")
     end
-    
+
 end

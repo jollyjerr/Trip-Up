@@ -22,4 +22,13 @@
             <a class="ui teal right floated button" href="/users/new">sign up</a>
         </div>
         <% end %>
+        <% if @user == "User not found" %>
+        <div class="ui padded text segment">
+            <div class="ui visible message">
+                <p>
+                    <%= @user %>
+                </p>
+            </div>
+        </div>
+        <% end %>
 </main>

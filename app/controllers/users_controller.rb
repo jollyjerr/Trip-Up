@@ -18,13 +18,7 @@ class UsersController < ApplicationController
                 action: 'index'
             )
         else
-            redirect_to(
-                controller: 'users',
-                action: 'new'
-            )
-            @user.errors.full_messages.each do |msg|
-                puts msg
-            end
+            render :new
         end
     end
 

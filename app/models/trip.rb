@@ -1,12 +1,16 @@
 class Trip < ApplicationRecord
     validates :name, presence: true
     validates :description, presence: true
+    validates :date, presence: true
 
+    
     belongs_to :category
     belongs_to :location
     has_and_belongs_to_many :users
     has_many :posts
     has_many :items
+    
+    accepts_nested_attributes_for :location
 
     def add_user(user)
         self.users.push(user)
@@ -70,4 +74,7 @@ class Trip < ApplicationRecord
         end
     end
 
+    def location_attributes=(location_attributes)
+        self.build_location(location_attributes)
+    end
 end
