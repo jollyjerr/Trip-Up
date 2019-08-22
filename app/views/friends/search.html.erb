@@ -17,7 +17,7 @@
                         <span class="ui header">
                     <%= link_to user.name, user_path(user) %>
                 </span>
-                        <% if current_user.friends.include?(user) != true %>
+                        <% if current_user.not_friends.include?(user) %>
                             <div class="ui basic segment">
                                 <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
                                     <input class="ui basic button" type=submit value='Add Friend'>

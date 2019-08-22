@@ -23,26 +23,26 @@
         <% if logged_in? %>
             <a class="item" href="/">My Trips</a>
             <% if current_user.friend_requests? %>
-            <a class="item" href="<%= friends_path %>">
+                <a class="item" href="<%= friends_path %>">
               Friends
               <div class="floating ui red circular label"><%=current_user.requested_friends.count%></div></a>
-            <% else %>
-            <a class="item" href="<%= friends_path %>">Friends</a>
-            <% end %>
-            <a class="item" href="<%= user_path(current_user)%>">Profile</a>
-            <a class="item" href="/trips/browse">Browse</a>
-            <% end %>
+                <% else %>
+                    <a class="item" href="<%= friends_path %>">Friends</a>
+                    <% end %>
+                        <a class="item" href="<%= user_path(current_user)%>">Profile</a>
+                        <a class="item" href="/trips/browse">Browse</a>
+                        <% end %>
 
 
-                <div class="right menu">
-                    <div class="item">
-                        <% if session[:user_id] %>
-                            <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-                                <input class="ui basic button" type=submit value='logout'>
-                                <% end %>
-                                    <% end %>
-                    </div>
-                </div>
+                            <div class="right menu">
+                                <div class="item">
+                                    <% if session[:user_id] %>
+                                        <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+                                            <input class="ui basic button" type=submit value='logout'>
+                                            <% end %>
+                                                <% end %>
+                                </div>
+                            </div>
     </nav>
     <%= yield %>
 </body>
