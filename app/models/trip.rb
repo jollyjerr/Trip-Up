@@ -59,19 +59,23 @@ class Trip < ApplicationRecord
     end
 
     def self.by_one_category category
-        Trip.all.select{|trip| trip.category.name == category}
+        Trip.all.select{|trip| trip.category.name.downcase.include? category}
     end
 
     def self.by_specific_name name
-        Trip.all.select{|trip| trip.name == name}
+        Trip.all.select{|trip| trip.name.downcase.include? name}
     end
 
-    def self.by_specific_user user
-        Trip.all.select do |trip|
-            trip.users.select do |user|
-                user.name == user
+    def self.by_specific_user username
+        trips = []
+        users = User.all.select{|user| user.name.downcase.include?(username)}
+        users.each do |user|
+            if Trip.all.select{|trip| trip.users.include?(user)} == []
+            else
+            trips << Trip.all.select{|trip| trip.users.include?(user)}
             end
         end
+        trips[0]
     end
 
     def location_attributes=(location_attributes)
