@@ -60,7 +60,7 @@
         <header class="ui basic segment">
             <h3 class="ui header">Find Friends</h3>
         </header>
-        <% @user.not_friends.sample(10).each do |user| %>
+        <% @user.not_friends.sample(5).each do |user| %>
             <section class="ui basic segment">
                 <img class="ui avatar image" src="<%=user.photo %>" alt="<%=user.name%>">
                 <span class="ui header">

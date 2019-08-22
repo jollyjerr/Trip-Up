@@ -31,6 +31,7 @@
     </div>
     <% if @trip.users.include?(current_user) %>
         <div>
+            <div class="ui basic segment"></div>
             <% if @trip.find_friends(current_user).any? %>
                 <div class="ui segment">
                     <%= form_for @trip do |f| %>
@@ -54,16 +55,6 @@
                                 <button class="ui tiny basic button" type="submit">Add Item</button>
                                 <% end %>
                         </div>
-                        <div class="ui segment">
-                            <h3 class="ui header">Add Comment</h3>
-                            <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
-                                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-                                <div class="ui input">
-                                    <input type="text" name="body">
-                                </div>
-                                <button class="ui tiny basic button" type="submit">Comment</button>
-                                <% end %>
-                        </div>
         </div>
 </main>
 <div class="ui two column doubling stackable grid container">
@@ -82,14 +73,25 @@
             </ul>
         </section>
     </div>
-    <% if @trip.posts.any? %>
-        <div class="column">
+    <div class="column">
+        <div class="ui segment">
+            <h3 class="ui header">Add Comment</h3>
+            <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
+                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+                <div class="ui input">
+                    <input type="text" name="body">
+                </div>
+                <button class="ui tiny basic button" type="submit">Comment</button>
+                <% end %>
+        </div>
+        <% if @trip.posts.any? %>
             <section class="ui padded text segment">
                 <% @trip.posts.reverse.each do |post| %>
                     <div class="ui vertical segment">
-                        <h4 class="ui header">
+                        <img class="ui avatar image" src="<%=post.user.photo %>" alt="<%=post.user.name%>">
+                        <span class="ui header">
                             <%= post.user.name %>
-                        </h4>
+                        </span>
                         <p>
                             <%= post.body %>
                         </p>
@@ -103,7 +105,7 @@
                     </div>
                     <% end %>
             </section>
-        </div>
-        <% end %>
+    </div>
+    <% end %>
 </div>
 <% end %>
