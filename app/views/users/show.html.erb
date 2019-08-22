@@ -47,3 +47,13 @@
                         </div>
                         <% end %>
 </main>
+<% if @user.trips.any? %>
+    <section class="ui raised very padded text container segment">
+        <h1 class="ui header">Favorite Activities:</h1>
+        <% @user.trips.each do |trip| %>
+            <div class="ui vertical segment">
+                <%= trip.category.name %>
+            </div>
+            <% end %>
+    </section>
+    <% end %>
