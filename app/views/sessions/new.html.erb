@@ -1,7 +1,8 @@
-<main class="ui raised very padded text container segment">
+<main class="ui teal raised very padded text container segment">
+<h1>Login:</h1>
     <%= form_for @user, url: login_path, method: :post do |f| %>
         <div class="ui basic segment">
-            <div class="ui labeled input focus">
+            <div class="ui fluid labeled input focus">
                 <div class="ui label">
                     Username
                 </div>
@@ -9,7 +10,7 @@
             </div>
         </div>
         <div class="ui basic segment">
-            <div class="ui labeled input focus">
+            <div class="ui fluid labeled input focus">
                 <div class="ui label">
                     Password
                 </div>

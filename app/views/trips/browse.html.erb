@@ -1,4 +1,4 @@
-<% if @trips == [] %>
+<% if @trips == [] || @trips == nil %>
     <main class="ui raised very padded text container segment">
         <h1 class="ui header">No Results Found</h1>
         <a class="ui mini positive button" href="/trips/new">Start your own?</a>
@@ -8,7 +8,7 @@
     <% else %>
         <main class="ui two column doubling stackable grid container">
             <section class="column">
-                <div class="ui segment">
+                <div class="ui teal segment">
                     <div class="ui basic segment">
                         <h4 class="ui header">Sort by:</h4>
                         <div class="ui fluid input">
