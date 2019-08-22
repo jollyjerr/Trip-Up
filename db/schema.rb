@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_154708) do
+ActiveRecord::Schema.define(version: 2019_08_22_144444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_08_21_154708) do
     t.string "email"
     t.string "name"
     t.string "password_digest"
+    t.string "photo", default: "https://www.sccpre.cat/mypng/detail/105-1056428_buncee-evergreen-christmas-tree.png"
   end
 
   add_foreign_key "items", "trips"

@@ -5,6 +5,7 @@
                 <p class="ui label">Username</p>
                 <input type="text" name="user[name]" id="user_name" value="<%=@user.name%>">
             </div>
+            <img class="ui tiny circular right floated image" src="<%=@user.photo %>" alt="<%=@user.name%>">
         </div>
         <div class="ui basic segment">
             <div class="ui transparent huge fluid input">
@@ -13,7 +14,13 @@
             </div>
         </div>
         <div class="ui basic segment">
-            <input class="ui basic yellow button" type="submit" name="commit" value="Update User" data-disable-with="Update User">
+            <div class="ui transparent huge fluid input">
+                <p class="ui label">Profile Picture</p>
+                <input type="text" name="user[photo]" id="user_photo" value="<%=@user.photo%>">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <input class="ui basic yellow button" type="submit" name="commit" value="Save" data-disable-with="Update User">
         </div>
         <% end %>
 </main>

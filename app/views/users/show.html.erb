@@ -4,6 +4,7 @@
             <h1 class="ui left floated header">
                 <%=@user.name%>
             </h1>
+            <img class="ui tiny circular right floated image" src="<%=@user.photo %>" alt="<%=@user.name%>">
             <% if current_user.friends_with?(@user) %>
                 <h4 class="ui green right floated header">Friends</h4>
                 <% end %>

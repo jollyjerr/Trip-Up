@@ -8,15 +8,18 @@
                     </header>
                     <% @requests.each do |friend| %>
                         <section class="ui basic segment">
-                            <div class="ui green header">
+                            <img class="ui avatar image" src="<%=friend.photo %>" alt="<%=friend.name%>">
+                            <span class="ui green header">
                                 <%= friend.name%>
+                            </span>
+                            <div class="ui basic segment">
+                                <%= form_tag ({controller: 'friends', action: 'add', method: 'post', id: friend.id}) do %>
+                                    <input class="ui basic tiny left floated positive button" type=submit value='Accept'>
+                                    <% end %>
+                                        <%= form_tag ({controller: 'friends', action: 'reject', method: 'post', id: friend.id}) do %>
+                                            <input class="ui basic tiny right floated negative button" type=submit value='Politely Refuse'>
+                                            <% end %>
                             </div>
-                            <%= form_tag ({controller: 'friends', action: 'add', method: 'post', id: friend.id}) do %>
-                                <input class="ui basic tiny left floated positive button" type=submit value='Accept'>
-                                <% end %>
-                                    <%= form_tag ({controller: 'friends', action: 'reject', method: 'post', id: friend.id}) do %>
-                                        <input class="ui basic tiny right floated negative button" type=submit value='Politely Refuse'>
-                                        <% end %>
                         </section>
                         <% end %>
                 </div>
@@ -28,9 +31,10 @@
                             </header>
                             <% @pending.each do |friend| %>
                                 <section class="ui basic segment">
-                                    <div class="ui yellow header">
+                                    <img class="ui avatar image" src="<%=friend.photo %>" alt="<%=friend.name%>">
+                                    <span class="ui yellow header">
                                         <%= friend.name%>
-                                    </div>
+                                    </span>
                                 </section>
                                 <% end %>
                         </div>
@@ -42,9 +46,10 @@
                                 <% if @user.friends? %>
                                     <% @friends.each do |friend| %>
                                         <section class="ui basic segment">
-                                            <div class="ui header">
+                                            <img class="ui avatar image" src="<%=friend.photo %>" alt="<%=friend.name%>">
+                                            <span class="ui header">
                                                 <%= link_to  friend.name, user_path(friend) %>
-                                            </div>
+                                            </span>
                                         </section>
                                         <% end %>
                                             <% end %>
@@ -57,12 +62,15 @@
         </header>
         <% @user.not_friends.sample(10).each do |user| %>
             <section class="ui basic segment">
-                <div class="ui left floated header">
+                <img class="ui avatar image" src="<%=user.photo %>" alt="<%=user.name%>">
+                <span class="ui header">
                     <%= link_to user.name, user_path(user) %>
+                </span>
+                <div class="ui basic segment">
+                    <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
+                        <input class="ui basic button" type=submit value='Add Friend'>
+                        <% end %>
                 </div>
-                <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
-                    <input class="ui basic button" type=submit value='Add Friend'>
-                    <% end %>
             </section>
             <% end %>
     </section>

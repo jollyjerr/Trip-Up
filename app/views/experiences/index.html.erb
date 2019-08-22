@@ -1,9 +1,10 @@
 <section id="left_banner">
     <div class="ui raised segment">
-        <h1 class="ui header">
+        <img class="ui tiny avatar image" src="<%=@user.photo %>" alt="<%=@user.name%>">
+        <span class="ui header">
             <%= @user.name %>
-        </h1>
-        <a class="ui primary basic button" href="/trips/new">Create Trip</a>
+        </span>
+        <a class="ui primary right floated positive button" href="/trips/new">Create Trip</a>
     </div>
 </section>
 <% if @user.trips.any? %>
