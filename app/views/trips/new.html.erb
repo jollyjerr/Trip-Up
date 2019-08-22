@@ -41,26 +41,26 @@
                     Location
                 </div>
                 <%= f.fields_for :location do |location_builder| %>
-                    <%= location_builder.label :city %>
-                    <%= location_builder.text_field :city %>
-                    <%= location_builder.label :state %>
+                    <input type="text" name="trip[location_attributes][city]" id="trip_location_attributes_city" placeholder="City">
                     <%= location_builder.collection_select :state, State.all, :name, :name %>
-                <% end %>
+                        <% end %>
             </div>
         </div>
         <div class="ui basic segment">
             <input class="ui positive button" type="submit" name="commit" value="Create Trip!" data-disable-with="create trip">
         </div>
         <% end %>
-        <% if @trip.errors.any? %>
-        <div class="ui padded text segment">
-            <div class="ui visible message">
-                <p>
-                    <% @trip.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                </p>
-            </div>
-        </div>
-        <% end %>
+            <% if @trip.errors.any? %>
+                <div class="ui padded text segment">
+                    <div class="ui visible message">
+                        <p>
+                            <% @trip.errors.full_messages.each do |msg| %>
+                                <li>
+                                    <%= msg %>
+                                </li>
+                                <% end %>
+                        </p>
+                    </div>
+                </div>
+                <% end %>
 </main>
