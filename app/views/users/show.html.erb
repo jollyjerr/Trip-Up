@@ -14,6 +14,16 @@
                 <%=@user.email%>
             </h4>
         </div>
+        <% if @user.twitter %>
+            <a href="<%= @user.twitter%>">
+                <i class="large twitter icon"></i>
+            </a>
+            <% end %>
+                <% if @user.instagram %>
+                    <a href="<%= @user.instagram%>">
+                        <i class="large instagram icon"></i>
+                    </a>
+                    <% end %>
     </section>
 
     <% if current_user.id == @user.id %>

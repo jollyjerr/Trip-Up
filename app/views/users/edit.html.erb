@@ -20,6 +20,18 @@
             </div>
         </div>
         <div class="ui basic segment">
+            <div class="ui transparent huge fluid input">
+                <p class="ui label">Twitter</p>
+                <input type="text" name="user[twitter]" id="user_twitter" value="<%=@user.twitter%>">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui transparent huge fluid input">
+                <p class="ui label">Instagram</p>
+                <input type="text" name="user[instagram]" id="user_instagram" value="<%=@user.instagram%>">
+            </div>
+        </div>
+        <div class="ui basic segment">
             <input class="ui basic yellow button" type="submit" name="commit" value="Save" data-disable-with="Update User">
         </div>
         <% end %>
