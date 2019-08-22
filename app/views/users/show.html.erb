@@ -14,12 +14,12 @@
                 <%=@user.email%>
             </h4>
         </div>
-        <% if @user.twitter.length > 1 %>
+        <% if @user.twitter && @user.twitter.length > 1 %>
             <a href="<%= @user.twitter%>">
                 <i class="large twitter icon"></i>
             </a>
             <% end %>
-                <% if @user.instagram.length > 1 %>
+                <% if @user.instagram && @user.instagram.length > 1 %>
                     <a href="<%= @user.instagram%>">
                         <i class="large instagram icon"></i>
                     </a>
