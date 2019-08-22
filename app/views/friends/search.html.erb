@@ -1,34 +1,34 @@
 <% if @results == [] %>
-  <main class="ui raised very padded text container segment">
-        <section class="column">
+    <main class="ui raised very padded text container segment">
         <header class="ui basic segment">
             <h3 class="ui header">Search Results: </h3>
             <p>No Results Found</p>
         </header>
-        <a class="ui button" href="/friends">Back</a>
     </main>
-<% else %>
-    <main class="ui raised very padded text container segment">
-        <section class="column">
-        <header class="ui basic segment">
-            <h3 class="ui header">Search Results:</h3>
-        </header>
-        <% @results.each do |user| %>
-            <% if user.name != current_user.name %>
-            <section class="ui basic segment">
-                <img class="ui avatar image" src="<%=user.photo %>" alt="<%=user.name%>">
-                <span class="ui header">
+    <% else %>
+        <main class="ui raised very padded text container segment">
+            <header class="ui basic segment">
+                <h3 class="ui header">Search Results:</h3>
+            </header>
+            <% @results.each do |user| %>
+                <% if user.name != current_user.name %>
+                    <div class="ui vertical clearing segment">
+                        <img class="ui avatar image" src="<%=user.photo %>" alt="<%=user.name%>">
+                        <span class="ui header">
                     <%= link_to user.name, user_path(user) %>
                 </span>
-                <div class="ui basic segment">
-                    <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
-                        <input class="ui basic button" type=submit value='Add Friend'>
-                        <% end %>
-                </div>
-                <a class="ui button" href="/friends">Back</a>
-            </section>
-            <% end %>
-            <% end %>
-        </section>
-    </main>
-    <% end %>
+                        <% if current_user.friends.include?(user) != true %>
+                            <div class="ui basic segment">
+                                <%= form_tag ({controller: 'friends', action: 'create', method: 'post', id: user.id}) do %>
+                                    <input class="ui basic button" type=submit value='Add Friend'>
+                                    <% end %>
+                            </div>
+                            <% end %>
+                                <% end %>
+                                    <% end %>
+                    </div>
+        </main>
+        <% end %>
+            <div class="ui basic raised text container segment">
+                <a class="ui huge teal button" href="/friends">Back</a>
+            </div>
