@@ -14,3 +14,13 @@
  *= require_self
  */
 
+ #welcome_banner{
+    font-family: 'Mali', cursive;
+    /* font-size: 45px; */
+ }
+
+ #welcome_body {
+    background-image: url("https://images.unsplash.com/photo-1459231978203-b7d0c47a2cb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80");
+    background-size: cover;
+    opacity: 0.9;
+}
