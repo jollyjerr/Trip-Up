@@ -16,7 +16,7 @@
 
  #welcome_banner{
     font-family: 'Mali', cursive;
-    /* font-size: 45px; */
+    opacity: 0.9;
  }
 
  #welcome_body {
