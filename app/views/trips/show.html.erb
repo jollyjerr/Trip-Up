@@ -24,18 +24,20 @@
                             <%= link_to  user.name, user_path(user) %>
                         </div>
                     </span>
-                <% end %>
+                    <% end %>
             </div>
         </div>
         <div class="ui floated basic segment">
             <h3>Location:</h3>
-            <%= link_to(image_tag("https://maps.googleapis.com/maps/api/staticmap?markers=#{@trip.location.latitude},#{@trip.location.longitude}&zoom=12&size=300x300&key=AIzaSyDw1EI5EJis-zY266Ea96wUBH-qQ-7jXBs"), "https://www.google.com/maps/place/#{@trip.location.city},+#{@trip.location.state}") %>
+            <a href="https://www.google.com/maps/place/<%=@trip.location.city%>,+<%=@trip.location.state%>" target="blank">
+            <img src="https://maps.googleapis.com/maps/api/staticmap?markers=<%=@trip.location.latitude%>,<%=@trip.location.longitude%>&zoom=12&size=300x300&key=AIzaSyDw1EI5EJis-zY266Ea96wUBH-qQ-7jXBs">
+        </a>
         </div>
     </div>
     <% if @trip.users.include?(current_user) %>
         <div class="column">
             <div class="ui basic segment"></div>
-                <% if @trip.find_friends(current_user).any? %>
+            <% if @trip.find_friends(current_user).any? %>
                 <div class="ui segment">
                     <h3>Invite Friends!</h3>
                     <%= form_for @trip do |f| %>
@@ -45,66 +47,66 @@
                 </div>
                 <% else %>
                     <div class="ui basic segment"></div>
-                <% end %>
-                    <div class="ui segment">
-                        <h3 class="ui header">Add Item To Packing List</h3>
-                        <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
-                            <input type="hidden" name="trip_id" value="<%= @trip.id %>">
+                    <% end %>
+                        <div class="ui segment">
+                            <h3 class="ui header">Add Item To Packing List</h3>
+                            <%= form_tag({controller: 'items', action: 'create', method: 'post'}) do %>
+                                <input type="hidden" name="trip_id" value="<%= @trip.id %>">
                                 <div class="ui input">
                                     <input type="text" name="name" placeholder="Hiking Boots...">
                                 </div>
-                            <button class="ui tiny basic button" type="submit">Add Item</button>
-                        <% end %>
-                    </div>
+                                <button class="ui tiny basic button" type="submit">Add Item</button>
+                                <% end %>
+                        </div>
                         <div class="ui segment">
                             <h3 class="ui header">Add Comment</h3>
                             <%= form_tag({controller: 'posts', action: 'create', method: 'post'}) do %>
                                 <input type="hidden" name="trip_id" value="<%= @trip.id %>">
-                                    <div class="ui input">
-                                        <input type="text" name="body">
-                                    </div>
+                                <div class="ui input">
+                                    <input type="text" name="body">
+                                </div>
                                 <button class="ui tiny basic button" type="submit">Comment</button>
-                            <% end %>
-                            <% if @trip.posts.any? %>
-                                    <% @trip.posts.reverse.each do |post| %>
-                                        <div class="ui vertical segment">
-                                            <img class="ui avatar image" src="<%=post.user.photo %>" alt="<%=post.user.name%>">
-                                            <span class="ui header">
+                                <% end %>
+                                    <% if @trip.posts.any? %>
+                                        <% @trip.posts.reverse.each do |post| %>
+                                            <div class="ui vertical segment">
+                                                <img class="ui avatar image" src="<%=post.user.photo %>" alt="<%=post.user.name%>">
+                                                <span class="ui header">
                                                 <%= post.user.name %>
                                             </span>
-                                            <p>
-                                                <%= post.body %>
-                                            </p>
-                                            <% if session[:user_id] == post.user.id %>
-                                                <div class="ui buttons">
-                                                    <button class="ui mini button">
+                                                <p>
+                                                    <%= post.body %>
+                                                </p>
+                                                <% if session[:user_id] == post.user.id %>
+                                                    <div class="ui buttons">
+                                                        <button class="ui mini button">
                                                         <%= link_to  "Delete Comment", post_path(post), method: :delete %>
                                                     </button>
-                                                </div>
+                                                    </div>
+                                                    <% end %>
+                                            </div>
                                             <% end %>
-                                        </div>
-                            <% end %>
-                        </div>    
+                        </div>
         </div>
-    <% end %>
+        <% end %>
 </main>
-    <section class="ui two column doubling stackable grid container">
-        <div class="column">
-            <div class="ui segment">
-                <h4 class="ui header">Packing list:</h4>
-                <ul class="ui large middle animated aligned divided list">
-                    <% @trip.items.reverse.each do |item| %>
-                        <p class="item">
-                            <a href="https://www.amazon.com/s?k=<%=item.name%>" target="blank">
-                                <%=item.name%>
-                            </a>
-                            <button class="ui right floated mini button">
+<section class="ui two column doubling stackable grid container">
+    <div class="column">
+        <div class="ui segment">
+            <h4 class="ui header">Packing list:</h4>
+            <ul class="ui large middle animated aligned divided list">
+                <% @trip.items.reverse.each do |item| %>
+                    <p class="item">
+                        <a href="https://www.amazon.com/s?k=<%=item.name%>" target="blank">
+                            <%=item.name%>
+                        </a>
+                        <button class="ui right floated mini button">
                             <%= link_to  "Remove", item_path(item), method: :delete %>
                         </button>
-                        </p>
-                        <% end %>
-                </ul>
-            </div>
+                    </p>
+                    <% end %>
+            </ul>
         </div>
-    </section>
-    <% end %>
+    </div>
+</section>
+<% end %>
