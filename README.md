@@ -40,7 +40,7 @@ To download Trip-Up onto your local device, follow these steps:
 ![browse](https://github.com/jollyjerr/Trip-Up/blob/master/github/browse.gif)
 
 ## Demo Video
-[Here!](https://youtu.be/hc3tlU89mpI)
+[Here!](https://youtu.be/1wTac9-w5co)
 
 ## Contributing
 Feel free to open pull requests or report any bugs!
