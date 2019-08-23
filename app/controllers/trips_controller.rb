@@ -41,6 +41,7 @@ class TripsController < ApplicationController
     def destroy
         @trip = Trip.find(params[:id])
         @trip.items.destroy_all
+        @trip.posts.destroy_all
         @trip.destroy
         redirect_to '/home'
     end
